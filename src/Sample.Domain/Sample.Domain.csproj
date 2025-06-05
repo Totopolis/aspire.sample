@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="ErrorOr" />
+		<PackageReference Include="NodaMoney" />
+		<PackageReference Include="NodaTime" />
+		<PackageReference Include="Vogen" />
+	</ItemGroup>
+
+</Project>

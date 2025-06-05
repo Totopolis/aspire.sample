@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="FastEndpoints" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sample.Application\Sample.Application.csproj" />
+	</ItemGroup>
+
+</Project>
