@@ -5,7 +5,7 @@ Transaction generator sends them to api.
 # Application resources 
 
 ## List view
-![[media/aspire-resources.png]]
+![](media/aspire-resources.png)
 
 ## Graph view
-![[media/aspire-graph.png]]
+![](media/aspire-graph.png)
