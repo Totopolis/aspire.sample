@@ -9,3 +9,6 @@ Transaction generator sends them to api.
 
 ## Graph view
 ![](media/aspire-graph.png)
+
+## VisualStudio Solution Structure
+![](media/vs-solution.png)

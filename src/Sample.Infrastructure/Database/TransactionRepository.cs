@@ -29,7 +29,9 @@ internal sealed class TransactionRepository : ITransactionRepository
             return ITransactionRepository.CreateAndCommitStatus.Created;
         }
         // DIRTY HACK: index unique error code
-        catch (PostgresException ex) when (ex.SqlState == "23505")
+        catch (DbUpdateException ex) when (
+            ex.InnerException is PostgresException pe &&
+            pe.SqlState == "23505")
         {
             return ITransactionRepository.CreateAndCommitStatus.DuplicateError;
         }
