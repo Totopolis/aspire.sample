@@ -17,10 +17,10 @@ public partial struct TransactionId
             return Validation.Invalid("TransactionId can not contains all bits");
         }
 
-        /*if (value.Version != 7)
+        if (value.Version != 7)
         {
             return Validation.Invalid("TransactionId must be 7 version");
-        }*/
+        }
 
         return Validation.Ok;
     }

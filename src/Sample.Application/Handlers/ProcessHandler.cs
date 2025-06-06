@@ -1,4 +1,4 @@
-﻿namespace Sample.Application;
+﻿namespace Sample.Application.Handlers;
 
 public sealed class ProcessHandler
 {

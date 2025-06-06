@@ -1,10 +1,12 @@
 ﻿using FastEndpoints;
 using Microsoft.AspNetCore.Http.Json;
+using Microsoft.EntityFrameworkCore;
 using NodaMoney;
 using Sample.Api;
 using Sample.Api.Common;
 using Sample.Application;
 using Sample.Infrastructure;
+using Sample.Infrastructure.Database;
 using Scalar.AspNetCore;
 using System.Globalization;
 
@@ -14,6 +16,8 @@ public static class Boot
 {
     public static void PreBuild(this WebApplicationBuilder builder)
     {
+        builder.AddServiceDefaults();
+
         SetupMoneyAccuracy();
 
         // https://fast-endpoints.com/docs/configuration-settings#specify-json-serializer-options
@@ -38,11 +42,36 @@ public static class Boot
             .AddSampleInfrastructureHostedServices(builder.Configuration);
 
         builder.Services.AddOpenApi();
-        
-        builder.AddServiceDefaults();
+
+        builder.AddNpgsqlDbContext<SampleDbContext>(
+            connectionName: "db",
+            configureDbContextOptions: opt =>
+            {
+                opt.UseNpgsql(opt2 => opt2.UseNodaTime());
+            });
+
+        /*builder.Services.AddDbContext<SampleDbContext>(opt =>
+        {
+            var connectionString = builder.Configuration.GetConnectionString("db");
+
+            if (connectionString is null)
+            {
+                opt.UseNpgsql(opt2 => opt2.UseNodaTime());
+            }
+            else
+            {
+                opt.UseNpgsql(
+                    connectionString: connectionString,
+                    opt2 => opt2.UseNodaTime());
+            }
+        });
+
+        builder.EnrichNpgsqlDbContext<SampleDbContext>();*/
     }
 
-    public static async Task PostBuild(this WebApplication app)
+    public static async Task PostBuild(
+        this WebApplication app,
+        CancellationToken ct)
     {
         // app.UseExceptionHandler();
         app.UseFastEndpoints();

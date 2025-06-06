@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sample.MicroService\Sample.MicroService.csproj" />
+    <ProjectReference Include="..\Sample.Migrator\Sample.Migrator.csproj" />
+    <ProjectReference Include="..\Sample.Tester\Sample.Tester.csproj" />
   </ItemGroup>
 
 </Project>

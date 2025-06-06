@@ -3,15 +3,21 @@ var builder = DistributedApplication.CreateBuilder(args);
 var postgres = builder.AddPostgres("postgres");
 var postgresdb = postgres.AddDatabase("db");
 
-var redis = builder.AddRedis("redis");
+// var redis = builder.AddRedis("redis");
+
+var migrator = builder.AddProject<Projects.Sample_Migrator>("migrator")
+    .WithReference(postgresdb)
+    .WaitFor(postgresdb);
 
 var apiInstance1 = AddApiInstance(1, 1831);
 var apiInstance2 = AddApiInstance(2, 1832);
 
 // Transactions source
 _ = builder
-    .AddProject<Projects.Sample_MicroService>("tester-1")
-    .WithHttpEndpoint(port: 1833)
+    .AddProject<Projects.Sample_Tester>("tester-1")
+    .WithHttpEndpoint(
+        port: 1833,
+        name: "tester-1-endpoint")
     .WithReference(apiInstance1)
     .WaitFor(apiInstance1)
     .WithReference(apiInstance2)
@@ -25,7 +31,9 @@ IResourceBuilder<ProjectResource> AddApiInstance(int instanceNumber, int instanc
 {
     var instance = builder
         .AddProject<Projects.Sample_MicroService>($"api-{instanceNumber}")
-        .WithHttpEndpoint(port: instancePort)
+        .WithHttpEndpoint(
+            port: instancePort,
+            name: $"api-{instanceNumber}-endpoint")
         .WithUrls(context =>
         {
             var oldUrlAnnotation = context.Urls.Single();
@@ -47,8 +55,9 @@ IResourceBuilder<ProjectResource> AddApiInstance(int instanceNumber, int instanc
         })
         .WithReference(postgresdb)
         .WaitFor(postgresdb)
-        .WithReference(redis)
-        .WaitFor(redis);
+        .WaitForCompletion(migrator);
+         //.WithReference(redis)
+        //.WaitFor(redis);
 
     return instance;
 }
