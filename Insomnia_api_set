@@ -1,0 +1,203 @@
+type: collection.insomnia.rest/5.0
+name: ASPIRE SAMPLE
+meta:
+  id: wrk_6a558ef8e0084e27ae91f8d3cb39ebb2
+  created: 1749294778752
+  modified: 1749294778752
+  description: ""
+collection:
+  - name: API-1
+    meta:
+      id: fld_adfc0aa335a3416395124b6391e53db4
+      created: 1749295472667
+      modified: 1749295493270
+      sortKey: -1749295479022
+      description: ""
+    children:
+      - url: http://localhost:1831/api/v1/Transaction
+        name: API-1 CREATE
+        meta:
+          id: req_cd327e6c2d754d79b565c92f2d0aeb96
+          created: 1749295051620
+          modified: 1749295484415
+          isPrivate: false
+          description: ""
+          sortKey: -1749295484392
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id": "7632C024-9C42-4F37-9DE0-FF1CC8F92218",
+              "transactionDate": "2024-07-21T17:32:28Z",
+              "amount": 100500
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:1831/api/v1/Transaction?id=7632C024-9C42-4F37-9DE0-FF1CC8F92218
+        name: API-1 GET
+        meta:
+          id: req_c93d4cf1ef094499846e8677f70af023
+          created: 1749296043945
+          modified: 1749296190304
+          isPrivate: false
+          description: ""
+          sortKey: -1749295484292
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:1831/api/v1/Transaction
+        name: API-1 CREATE BAD TIME
+        meta:
+          id: req_bd123978a3b34533aae329842de6025c
+          created: 1749296243294
+          modified: 1749296262543
+          isPrivate: false
+          description: ""
+          sortKey: -1749295484342
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id": "1632C024-9C42-4F37-9DE0-FF1CC8F92218",
+              "transactionDate": "2027-07-21T17:32:28Z",
+              "amount": 100500
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:1831/api/v1/Transaction
+        name: API-1 CREATE BAD AMOUNT
+        meta:
+          id: req_87b60654765b4e4a919d0d99c7865d92
+          created: 1749296276541
+          modified: 1749296288599
+          isPrivate: false
+          description: ""
+          sortKey: -1749295484317
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id": "1632C024-9C42-4F37-9DE0-FF1CC8F92218",
+              "transactionDate": "2024-07-21T17:32:28Z",
+              "amount": -100500
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: API-2
+    meta:
+      id: fld_3501fd8051e648a1813f4b56b476b6b7
+      created: 1749295478922
+      modified: 1749295478922
+      sortKey: -1749295478922
+      description: ""
+    children:
+      - url: http://localhost:1832/api/v1/Transaction
+        name: API-2 CREATE
+        meta:
+          id: req_fb57bfcc76694ee184fd3728b742f161
+          created: 1749295332382
+          modified: 1749295490277
+          isPrivate: false
+          description: ""
+          sortKey: -1749295490253
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id": "7632C024-9C42-4F37-9DE0-FF1CC8F92218",
+              "transactionDate": "2024-07-21T17:32:28Z",
+              "amount": 100500
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:1832/api/v1/Transaction?id=7632C024-9C42-4F37-9DE0-FF1CC8F92218
+        name: API-2 GET
+        meta:
+          id: req_390ec04c642542829a9533b5005f5c81
+          created: 1749296109414
+          modified: 1749296130453
+          isPrivate: false
+          description: ""
+          sortKey: -1749295490153
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.2.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_95e40b5b22f82d80e9b0526e7585b1436dc69c36
+    created: 1749294778758
+    modified: 1749294778758
+environments:
+  name: Base Environment
+  meta:
+    id: env_95e40b5b22f82d80e9b0526e7585b1436dc69c36
+    created: 1749294778756
+    modified: 1749294778756
+    isPrivate: false
