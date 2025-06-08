@@ -1,6 +1,7 @@
 ﻿using FastEndpoints;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Storage;
 using NodaMoney;
 using Sample.Api;
@@ -48,6 +49,9 @@ public static class Boot
             connectionName: "db",
             configureDbContextOptions: opt =>
             {
+                opt.ConfigureWarnings(opt2 => opt2
+                    .Log((RelationalEventId.CommandExecuted, LogLevel.Trace)));
+                
                 opt.UseNpgsql(opt2 => opt2
                     .UseNodaTime()
                     .ExecutionStrategy(x => new NonRetryingExecutionStrategy(x)));
@@ -58,7 +62,6 @@ public static class Boot
         this WebApplication app,
         CancellationToken ct)
     {
-        // app.UseExceptionHandler();
         app.UseFastEndpoints();
         app.UseSampleExceptionHandler();
 

@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Http;
+using Microsoft.Extensions.Logging;
 using Polly;
 using Polly.Extensions.Http;
 using Sample.Producer;
@@ -12,6 +15,7 @@ builder.AddServiceDefaults();
 var retryPolicy = HttpPolicyExtensions
     .HandleTransientHttpError()
     .WaitAndRetryAsync(
+        // total: 1 + 3    
         retryCount: 3,
         sleepDurationProvider: (retryAttempt, context) =>
         {
@@ -40,8 +44,10 @@ builder.Services
 
 builder.Services.AddHostedService<ProducerHostedService>();
 
+builder.Services.RemoveAll<IHttpMessageHandlerBuilderFilter>();
+
+builder.Services.AddLogging(x => x.SetMinimumLevel(LogLevel.Warning));
+
 using var host = builder.Build();
 
 await host.RunAsync();
-
-var xx = 1;

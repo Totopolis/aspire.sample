@@ -46,6 +46,7 @@ internal sealed class ProducerHostedService : IHostedService
         return Task.CompletedTask;
     }
 
+    // TODO: Dont work
     public Task StopAsync(CancellationToken cancellationToken)
     {
         _needStop.Dispose();
@@ -70,7 +71,8 @@ internal sealed class ProducerHostedService : IHostedService
                 Amount = (decimal)amount
             };
 
-            await Task.Delay(100);
+            // Postgres NodaTime.Instant is 1us granularity
+            await Task.Delay(1);
 
             await _channel.Writer.WriteAsync(
                 item: trans,
