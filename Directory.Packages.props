@@ -3,6 +3,7 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
+    <PackageVersion Include="Aspire.Hosting.Docker" Version="9.3.0-preview.1.25265.20" />
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.3.0" />
     <PackageVersion Include="Microsoft.Extensions.Http.Polly" Version="9.0.5" />
     <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.5.0" />

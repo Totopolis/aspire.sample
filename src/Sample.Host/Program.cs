@@ -1,3 +1,6 @@
+// If u need docker-compose deployment
+// builder.AddDockerComposeEnvironment("compose");
+// aspire publish -o docker-compose-artifacts
 var builder = DistributedApplication.CreateBuilder(args);
 
 var postgres = builder

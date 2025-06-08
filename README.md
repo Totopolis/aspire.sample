@@ -38,3 +38,8 @@ Consumer consumer from db.
 
 ## Insomnia
 ![](media/insomnia-1.png)
+
+## If u need docker-compose deployment
+
+Use it: https://www.nuget.org/packages/Aspire.Hosting.Docker
+
