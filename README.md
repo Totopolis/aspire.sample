@@ -32,3 +32,9 @@ Consumer consumer from db.
 4. Run producer by hands
 5. Await TooManyTransactions in Structured Logs by Api service
 6. Run Consumer by hands
+
+## Structured Logs (producer started)
+![](media/vs-solution.png)
+
+## Insomnia
+![](media/insomnia-1.png)
