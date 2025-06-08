@@ -34,7 +34,7 @@ Consumer consumer from db.
 6. Run Consumer by hands
 
 ## Structured Logs (producer started)
-![](media/vs-solution.png)
+![](media/structured-logs.png)
 
 ## Insomnia
 ![](media/insomnia-1.png)
