@@ -6,7 +6,7 @@ using Sample.Domain.Transactions;
 
 namespace Sample.Infrastructure.Database;
 
-internal sealed class TransactionRepository : ITransactionRepository
+public sealed class TransactionRepository : ITransactionRepository
 {
     /// <summary>
     /// TODO: Consider a flexible upper limit
@@ -79,5 +79,33 @@ internal sealed class TransactionRepository : ITransactionRepository
             .FirstOrDefaultAsync(ct);
 
         return entity;
+    }
+
+    public async Task<IReadOnlyList<Transaction>> ExtractBatch(
+        int batchSize,
+        CancellationToken ct)
+    {
+        using var pgTransaction = await _dbContext.Database.BeginTransactionAsync(
+            isolationLevel: System.Data.IsolationLevel.ReadCommitted,
+            cancellationToken: ct);
+
+        await _dbContext.Database.ExecuteSqlRawAsync(
+                sql: "LOCK TABLE transaction IN SHARE ROW EXCLUSIVE MODE",
+                cancellationToken: ct);
+
+        var batch = await _dbContext
+            .Set<Transaction>()
+            .Take(batchSize)
+            .ToListAsync(ct);
+
+        if (batch.Any())
+        {
+            _dbContext.Set<Transaction>().RemoveRange(batch);
+            await _dbContext.SaveChangesAsync(ct);
+        }
+
+        await pgTransaction.CommitAsync(ct);
+
+        return batch;
     }
 }

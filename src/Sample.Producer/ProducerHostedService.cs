@@ -77,6 +77,12 @@ internal sealed class ProducerHostedService : IHostedService
             await _channel.Writer.WriteAsync(
                 item: trans,
                 cancellationToken: ct);
+
+            if (_counter > 100)
+            {
+                _logger.LogInformation($"Sended ~100 transactions");
+                _counter = 0;
+            }
         }
     }
 

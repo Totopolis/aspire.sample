@@ -8,6 +8,8 @@ public interface ITransactionRepository
 
     Task<CreateAndCommitStatus> CreateAndCommit(Transaction transaction, CancellationToken ct);
 
+    Task<IReadOnlyList<Transaction>> ExtractBatch(int batchSize, CancellationToken ct);
+
     public enum CreateAndCommitStatus
     {
         Created,

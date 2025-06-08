@@ -28,8 +28,8 @@ _ = builder
 // Consumer consume from db directly
 _ = builder
     .AddProject<Projects.Sample_Consumer>("consumer-1")
-    .WithReference(migrator)
-    .WaitFor(migrator)
+    .WithReference(db)
+    .WaitForCompletion(migrator)
     .WithExplicitStart();
 
 await builder
