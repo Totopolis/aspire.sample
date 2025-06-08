@@ -1,11 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Sample.ServiceDefaults\Sample.ServiceDefaults.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sample.Infrastructure\Sample.Infrastructure.csproj" />
+		<ProjectReference Include="..\Sample.ServiceDefaults\Sample.ServiceDefaults.csproj" />
+	</ItemGroup>
 
 </Project>

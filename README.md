@@ -11,6 +11,8 @@ Consumer consumer from db.
 4. Docker Desktop (on windows)
 5. Insomnia (optional)
 
+![](media/vs-version.png)
+
 # Application resources 
 
 ## List view
@@ -27,7 +29,6 @@ Consumer consumer from db.
 1. Run Docker Desktop
 2. Run Solution from VS
 3. See Aspire Dashboard in browser
-4. Run producer by hand
-5. Run Consumer by hand
-
-
+4. Run producer by hands
+5. Await TooManyTransactions in Structured Logs by Api service
+6. Run Consumer by hands

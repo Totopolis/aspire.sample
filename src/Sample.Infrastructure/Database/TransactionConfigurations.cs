@@ -44,7 +44,7 @@ internal sealed class TransactionConfigurations : IEntityTypeConfiguration<Trans
 
         builder
             .Property(x => x.Created)
-            .HasColumnName("provided_created")
+            .HasColumnName("created")
             .HasColumnType(SampleDbContext.TimestampType)
             .IsRequired();
     }

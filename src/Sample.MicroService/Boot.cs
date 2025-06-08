@@ -1,6 +1,7 @@
 ﻿using FastEndpoints;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using NodaMoney;
 using Sample.Api;
 using Sample.Api.Common;
@@ -47,26 +48,10 @@ public static class Boot
             connectionName: "db",
             configureDbContextOptions: opt =>
             {
-                opt.UseNpgsql(opt2 => opt2.UseNodaTime());
+                opt.UseNpgsql(opt2 => opt2
+                    .UseNodaTime()
+                    .ExecutionStrategy(x => new NonRetryingExecutionStrategy(x)));
             });
-
-        /*builder.Services.AddDbContext<SampleDbContext>(opt =>
-        {
-            var connectionString = builder.Configuration.GetConnectionString("db");
-
-            if (connectionString is null)
-            {
-                opt.UseNpgsql(opt2 => opt2.UseNodaTime());
-            }
-            else
-            {
-                opt.UseNpgsql(
-                    connectionString: connectionString,
-                    opt2 => opt2.UseNodaTime());
-            }
-        });
-
-        builder.EnrichNpgsqlDbContext<SampleDbContext>();*/
     }
 
     public static async Task PostBuild(
