@@ -2,6 +2,7 @@
 
 namespace Sample.Application.Abstractions;
 
+// TODO: split into separated IQuery interfaces (I in SOLID)
 public interface ITransactionRepository
 {
     Task<Transaction?> GetByProvidedId(Guid providedId, CancellationToken ct);
